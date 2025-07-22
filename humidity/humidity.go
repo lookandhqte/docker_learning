@@ -2,11 +2,12 @@ package humidity
 
 import (
 	"fmt"
-	"gelzh/weather" // Импорт своего модуля
 	"log"
 	"net/http"
 	"strconv"
 	"time"
+
+	"github.com/lookandhqte/docker_learning/weather" // Импорт своего модуля
 )
 
 func humidityHandler(w http.ResponseWriter, r *http.Request) {
