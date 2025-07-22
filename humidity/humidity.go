@@ -10,7 +10,7 @@ import (
 	"github.com/lookandhqte/docker_learning/weather" // Импорт своего модуля
 )
 
-func humidityHandler(w http.ResponseWriter, r *http.Request) {
+func HumidityHandler(w http.ResponseWriter, r *http.Request) {
 	city := r.URL.Query().Get("city")
 	daysStr := r.URL.Query().Get("id")
 
@@ -31,7 +31,7 @@ func humidityHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, fmt.Sprintf("Геокодинг ошибка: %v", err), http.StatusInternalServerError)
 		return
 	}
-	weather, err := weather.GetWeather(geo.Lat, geo.Lon, apiKey, days)
+	weather, err := weather.GetWeather((*geo)[0].Lat, (*geo)[0].Lon, apiKey, days)
 	if err != nil {
 		http.Error(w, fmt.Sprintf("Ошибка погоды: %v", err), http.StatusInternalServerError)
 		return
@@ -51,7 +51,7 @@ func humidityHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/humidity", humidityHandler)
+	http.HandleFunc("/humidity", HumidityHandler)
 	log.Println("Сервер влажности запущен на :1213")
 	log.Fatal(http.ListenAndServe(":1213", nil))
 }

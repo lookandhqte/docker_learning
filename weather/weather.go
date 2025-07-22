@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"strconv"
 	"time"
@@ -191,11 +190,4 @@ func WeatherHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	w.Write([]byte(html))
-}
-
-func main() {
-	http.HandleFunc("/weather", WeatherHandler)
-	port := ":1212"
-	log.Printf("Сервер запущен на http://localhost:%s", port)
-	log.Fatal(http.ListenAndServe(port, nil))
 }
