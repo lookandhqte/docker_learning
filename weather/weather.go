@@ -1,4 +1,4 @@
-package meow
+package weather
 
 import (
 	"encoding/json"
@@ -162,7 +162,7 @@ func WeatherHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	id := r.URL.Query().Get("id")
 	if id == "" {
-		http.Error(w, fmt.Sprintf("Ошибка id"), http.StatusInternalServerError)
+		http.Error(w, fmt.Sprintf("Ошибка id: %s", "айди пустое"), http.StatusInternalServerError)
 		return
 	}
 	intId, err := strconv.Atoi(id)

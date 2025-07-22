@@ -1,8 +1,8 @@
-package main
+package humidity
 
 import (
-	"/home/gelzhuravleva/gelzh/meow" // Импорт своего модуля
 	"fmt"
+	"gelzh/weather" // Импорт своего модуля
 	"log"
 	"net/http"
 	"strconv"
@@ -22,15 +22,15 @@ func humidityHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
+	apiKey := "c6b1ff1b5bdba6853fba34421f6149c3"
 
 	// Используем функции из модуля meow
-	geo, err := meow.GetGeocoding(city, "your_api_key")
+	geo, err := weather.GetGeocoding(city, apiKey)
 	if err != nil {
 		http.Error(w, fmt.Sprintf("Геокодинг ошибка: %v", err), http.StatusInternalServerError)
 		return
 	}
-
-	weather, err := meow.GetWeather(geo[0].Lat, geo[0].Lon, "your_api_key", days)
+	weather, err := weather.GetWeather(geo.Lat, geo.Lon, apiKey, days)
 	if err != nil {
 		http.Error(w, fmt.Sprintf("Ошибка погоды: %v", err), http.StatusInternalServerError)
 		return

@@ -1,4 +1,4 @@
-package meow
+package weather
 
 type WeatherData struct {
 	Dt   int64 `json:"dt"`
@@ -7,11 +7,11 @@ type WeatherData struct {
 		Humidity int     `json:"humidity"`
 	} `json:"main"`
 	Weather []struct {
-		Icon        string `json:icon`
+		Icon        string `json:"icon"`
 		Description string `json:"description"`
 	} `json:"weather"`
 	Wind struct {
-		Speed float64 `json:speed`
+		Speed float64 `json:"speed"`
 	} `json:"wind"`
 	Name string `json:"name"`
 }
