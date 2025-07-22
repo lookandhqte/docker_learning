@@ -1,4 +1,4 @@
-package humidity
+package main
 
 import (
 	"fmt"
@@ -51,7 +51,10 @@ func HumidityHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+
 	http.HandleFunc("/humidity", HumidityHandler)
+
 	log.Println("Сервер влажности запущен на :1213")
 	log.Fatal(http.ListenAndServe(":1213", nil))
+
 }
